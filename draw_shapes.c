@@ -26,3 +26,11 @@ void print_triangle(int leftCol, int size)
   }
 }
 
+// Print arrow per lab instructions
+void print_arrow(int leftCol, int size)
+{
+  print_triangle(leftCol, size/2);
+  print_square(leftCol+(leftCol/2), size/2);
+  putchar('\n');
+}
+
