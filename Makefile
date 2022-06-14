@@ -1,5 +1,5 @@
 # comments begin with #
-
+#adding comment to save to desktop
 
 # for convenience, define variable $(OBJS) to list of object files
 OBJS= draw_shapes.o draw_chars.o 11x16font.o 5x7-font.o 8x12-font.o uimain.o
