@@ -20,8 +20,8 @@ void print_char_5x7(char c)
   for(char row = 0; row < 5; row++) {
     unsigned char rowBits = font_5x7[c][row];
     for (char col = 0; col < 7; col++) {
-      unsigned char colMask = 1 << (6-col);
-      putchar( (rowBits & colMask) ? '*' : ' ');
+      unsigned char colMask = 1 << (6-col); // 1 shifts per space necessary for the col we are on
+      putchar( (rowBits & colMask) ? '*' : ' '); // prints out a star where rowBits and mask are 1
     }
     putchar('\n');
   }
@@ -30,10 +30,25 @@ void print_char_5x7(char c)
 void print_char_8x12(char c) // making standing letters
 {
   c -= 0x20; //skipping first 20 unprintables
-  for(char row = 0; row < 12; row++) {
-    unsigned char rowBits = font_8x12[c][row];
-    for (char col = 0; col < 8; col++) {
-      unsigned char colMask = 1 << (7-col);
+  for(char col = 0; col < 8; col++) {
+    unsigned char colMask = 1 << (7-col);
+    for (char row = 12; row > 0; row--) {
+      unsigned char rowBits = font_8x12[c][row];
+      putchar( (rowBits & colMask) ? '*' : ' ');
+    }
+    putchar('\n');
+  }
+}
+
+
+void print_char_12x8(char c) // making standing letters
+{
+  char row, col;
+  c -= 0x20; //skipping first 20 unprintables
+  for(col = 12; col > 0; col--) {
+    unsigned char rowBits = font_8x12[c][col];
+    for (row = 8; row >0; row--) {
+      unsigned char colMask = 1 << (7-row);
       putchar( (rowBits & colMask) ? '*' : ' ');
     }
     putchar('\n');
